@@ -1,0 +1,65 @@
+import React, { Component } from 'react';
+import { Platform, StyleSheet, View,Text, Button,Alert } from 'react-native';
+
+ 
+export default class App extends Component{
+    render()
+    {
+       return(
+         
+           <View style={{flex:1,flexDirection:"column"}}>
+                <View style={{flex:1,backgroundColor:"#FFFFF"}}>
+                <Text style={{textAlign: 'center',backgroundColor: "#d1e9eb",fontWeight: 'bold',fontSize:30}}>{"\n"}We need IMEI number of your phone you wish to ensure{"\n"}</Text>
+
+                <View  style={{flex:1,backgroundColor:"#FFFFF",paddingLeft:50}}>
+                
+                     <View style={{flexDirection:"row",marginTop:30}}>
+                        <Text >{'\u2022' + " "} </Text>
+                        <Text style={{fontSize:20}}>Dial *#06# on next screen{"\n"}{"\n"}</Text>
+                     </View>
+
+                     
+                    <View style={{flexDirection:"row"}} >
+                        <Text >{'\u2022'+" "} </Text>
+                        <Text style={{fontSize:20}}>Please clear the number on your screen before dialing *#06#.{"\n"}{"\n"}</Text>
+                    </View>
+                    
+                    <View style={{flexDirection:"row"}}>
+                         <Text>{'\u2022' + " "} </Text>
+                         <Text style={{fontSize:20}} >Take screen shot of your screen when you see your IMEI number{"\n"}{"\n"}</Text>
+                    </View>
+                     
+                     <View style={{flexDirection:"row"}}>
+                     <Text>{'\u2022' + " "} </Text>
+                     <Text style={{fontSize:20}}>Return to Digit App to continue the process{"\n"}{"\n"}</Text>
+
+                     </View>
+                     
+  
+                </View >
+            </View>
+                <View  style={{margin:3,width: "99%",flex:1,backgroundColor:"#FFFFF",justifyContent:"flex-end",marginBottom:3}}>
+            
+                    
+                    
+           
+          <Button
+            onPress={this.buttonClickListener}
+            title="Button Three"
+            color="#FF3D00"
+          />
+      
+                </View>
+                       
+           </View>
+           
+       )
+    }
+  
+}
+
+const styles=StyleSheet.create(
+    {
+        
+    }
+)

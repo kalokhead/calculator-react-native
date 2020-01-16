@@ -1,0 +1,132 @@
+import React from 'react';
+import { FlatList, ActivityIndicator, Text, View, StyleSheet, TouchableOpacity ,Alert } from 'react-native';
+
+export default class FetchExample extends React.Component {
+
+  constructor(props){
+    super(props);
+    this.state ={ isLoading: true}
+  }
+  showArrayItem = (item) => {
+ 
+    Alert.alert('model info is',item.model+" "+item.make+" "+item.price);
+    
+ 
+  } 
+  componentDidMount(){
+    return fetch('http://preprod-digitapp.godigit.com/S_DigitApp/mobile/MobileSpecification?make=Sa&imdCode=1000651')
+      .then((response) => response.json())
+      .then((responseJson) => {
+
+        this.setState({
+          isLoading: false,
+          dataSource: responseJson
+        }, function(){
+
+        });
+
+      })
+      .catch((error) =>{
+        console.error(error);
+      });
+  }
+
+
+
+  render(){
+
+    if(this.state.isLoading){
+      return(
+        <View style={{flex: 1, padding: 50}}>
+          <ActivityIndicator/>
+        </View>
+      )
+    }
+
+    return(
+      <View style={styles.container}>
+        
+        <View style={styles.style1}>
+        <FlatList
+       
+          data={this.state.dataSource}
+    renderItem={({item}) => 
+    
+    <TouchableOpacity onPress={this.showArrayItem.bind(this, item)}
+   
+    
+    >
+
+   
+    <View style={styles.container1} >
+<View style={{flexDirection:'row',flex:1}}>
+<Text  style={{textAlign:"left"}}>{item.make}</Text> 
+    
+    
+</View>
+<View style={{flexDirection:'row',flex:1}}>
+<Text  style={{textAlign:"left"}}>{item.price}</Text> 
+    
+    
+</View>
+
+<View style={{flexDirection:'row',flex:2}}>
+<Text style={{textAlign:"left"}}>{item.model}</Text>
+    
+    
+</View>
+
+    
+     </View>
+     </TouchableOpacity>
+   } keyExtractor={({id}, item) => id}
+        />
+
+      
+        </View>
+
+
+       
+      </View>
+    );
+  }
+}
+  const styles=StyleSheet.create({
+     container:{
+      flex: 1,
+     
+      flexDirection:'row',
+      
+      textAlign:"left",
+       
+       borderBottomWidth:1,
+     
+    
+      
+      
+     },
+     container1:{
+      flex: 1,
+      backgroundColor: '#9FA8DA',
+      flexDirection:'row',
+    justifyContent:'flex-start',
+     
+       borderBottomWidth:1,
+       borderLeftWidth:1,
+       borderRightWidth:1,
+       borderTopWidth:1,
+       borderBottomWidth:1,
+       marginTop:5
+    
+      
+      
+     },
+     style1:{
+         flex:1,
+        flexDirection:'column'
+     },
+     style2:{
+borderRightWidth:1
+     }
+  })
+
